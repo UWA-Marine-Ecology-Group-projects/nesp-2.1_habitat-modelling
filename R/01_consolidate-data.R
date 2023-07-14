@@ -88,7 +88,8 @@ tidy.habitat <- habitat %>%
   left_join(metadata) %>%
   dplyr::mutate(planned.or.exploratory = ifelse(is.na(planned.or.exploratory),
                                                 "Captains pick", planned.or.exploratory)) %>%
-  dplyr::mutate(clustered = ifelse(campaignid %in% "2021-03_West-Coast_BOSS", FALSE, TRUE)) %>%
+  dplyr::mutate(clustered = ifelse(campaignid %in% "2021-03_West-Coast_BOSS", FALSE, TRUE),
+                method = ifelse(str_detect(.$campaignid, "BRUV"), "BRUV", "drop.cam")) %>%
   glimpse()                                                                     # Number of obs matches original
 
 test <- tidy.habitat %>%

@@ -95,6 +95,8 @@ tidy.habitat <- habitat %>%
 test <- tidy.habitat %>%
   dplyr::filter(is.na(planned.or.exploratory) & isTRUE(clustered))
 
+habitat <- habitat %>% mutate_at(c('latitude','longitude'), as.numeric)
+
 # Write out the tidy data
 write.csv(habitat, file = "data/tidy/nesp-2.1_WA_habitat-data.csv",
           row.names = F)
